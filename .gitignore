@@ -1,3 +1,5 @@
+docker/output
+
 vagrant/vagrant_cache
 vagrant/output*
 vagrant/.vagrant
