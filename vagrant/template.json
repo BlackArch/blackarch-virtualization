@@ -1,0 +1,85 @@
+{
+  "builders": [
+    {
+      "boot_command": [
+        "<enter><wait10><wait10>",
+        "/usr/bin/curl -O http://{{.HTTPIP}}:{{.HTTPPort}}/scripts/virtualbox.sh<enter><wait5>",
+        "/usr/bin/bash ./virtualbox.sh<enter>"
+      ],
+      "boot_wait": "5s",
+      "disk_size": 20480,
+      "guest_additions_mode": "disable",
+      "guest_os_type": "ArchLinux_64",
+      "hard_drive_interface": "sata",
+      "headless": true,
+      "http_directory": ".",
+      "output_directory": "output",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "iso_url": "{{user `iso_url`}}",
+      "shutdown_command": "sudo poweroff",
+      "ssh_password": "vagrant",
+      "ssh_username": "vagrant",
+      "ssh_wait_timeout": "10000s",
+      "type": "virtualbox-iso",
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--memory",
+          "{{user `memory`}}"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--cpus",
+          "{{user `cpus`}}"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--rtcuseutc",
+          "on"
+        ]
+      ],
+      "virtualbox_version_file": ".vbox_version"
+    }
+  ],
+  "post-processors": [
+    [
+      {
+        "keep_input_artifact": true,
+        "output": "output/blackarch_{{.Provider}}.box",
+        "type": "vagrant"
+      }
+    ]
+  ],
+  "provisioners": [
+    {
+      "override": {
+        "virtualbox-iso": {
+          "execute_command": "echo 'vagrant'|sudo -S bash '{{.Path}}'"
+        }
+      },
+      "scripts": [
+        "scripts/pacman.sh",
+        "scripts/yaourt.sh",
+        "scripts/zsh.sh",
+        "scripts/vagrant.sh",
+        "scripts/networkmanager.sh",
+        "scripts/blackarch.sh",
+        "scripts/cleanup.sh",
+        "scripts/zerodisk.sh"
+      ],
+      "type": "shell"
+    }
+  ],
+  "variables": {
+    "cpus": "1",
+    "iso_checksum": "c0d5b2bd4d01741a770c4229f8b2939eecca8275dc9207cf629d0fa07787160b",
+    "iso_checksum_type": "sha256",
+    "iso_url": "http://mirror.rackspace.com/archlinux/iso/2016.08.01/archlinux-2016.08.01-dual.iso",
+    "memory": "1024"
+  }
+}
+
