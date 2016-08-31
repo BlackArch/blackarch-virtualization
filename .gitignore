@@ -1,0 +1,5 @@
+vagrant/vagrant_cache
+vagrant/output*
+vagrant/.vagrant
+vagrant/packer_cache
+vagrant/testing
