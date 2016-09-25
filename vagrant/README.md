@@ -2,7 +2,7 @@
 
 ## Introduction
 
-In this repo you find everything you need to generate a Vagrant basebox of BlackArch. We install a minimal ArchLinux and then add add BlackArch on top via [`strap.sh`](https://github.com/BlackArch/blackarch-site/blob/master/strap.sh).
+In this repo you find everything you need to generate a Vagrant basebox of BlackArch. We install a minimal ArchLinux and then add BlackArch on top via [`strap.sh`](https://github.com/BlackArch/blackarch-site/blob/master/strap.sh).
 This is based on the [GPL-licenced](https://github.com/kornrunner/packer-arch/blob/12748faaa76933281046cc5206c59436ffd75434/LICENSE) [kornrunner/packer-arch](https://github.com/kornrunner/packer-arch/tree/12748faaa76933281046cc5206c59436ffd75434).
 
 ## Prerequisites
