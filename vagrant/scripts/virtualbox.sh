@@ -61,7 +61,9 @@ cat <<-EOF > "${TARGET_DIR}${CONFIG_SCRIPT}"
   set -e
 
 	echo '${FQDN}' > /etc/hostname
-	/usr/bin/ln -s /usr/share/zoneinfo/${TIMEZONE} /etc/localtime
+	if [ ! -e /etc/localtime ]; then
+		/usr/bin/ln -s /usr/share/zoneinfo/${TIMEZONE} /etc/localtime
+	fi
 	/usr/bin/hwclock --systohc --utc
 	echo 'KEYMAP=${KEYMAP}' > /etc/vconsole.conf
 	/usr/bin/sed -i 's/#${LANGUAGE}/${LANGUAGE}/' /etc/locale.gen
