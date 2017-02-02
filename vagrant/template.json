@@ -76,9 +76,9 @@
   ],
   "variables": {
     "cpus": "1",
-    "iso_checksum": "b06f015b3f1298671523074fd810f47904eaf4d2329e245be4342bd01ecca082",
+    "iso_checksum": "4d9d67b1a20a3b44b0dd38679400971a68d5bd9f96608bd13a677d84b8a7ece5",
     "iso_checksum_type": "sha256",
-    "iso_url": "http://mirror.rackspace.com/archlinux/iso/2017.01.01/archlinux-2017.01.01-dual.iso",
+    "iso_url": "http://mirror.rackspace.com/archlinux/iso/2017.02.01/archlinux-2017.02.01-dual.iso",
     "memory": "1024"
   }
 }
