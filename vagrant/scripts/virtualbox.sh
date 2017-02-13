@@ -7,7 +7,6 @@ FQDN='blackarch.vm'
 KEYMAP='us'
 LANGUAGE='en_US.UTF-8'
 PASSWORD=$(/usr/bin/openssl passwd -crypt 'vagrant')
-TIMEZONE='UTC'
 Green='\e[0;32m'
 Reset='\e[0m'
 
@@ -61,7 +60,6 @@ cat <<-EOF > "${TARGET_DIR}${CONFIG_SCRIPT}"
   set -e
 
 	echo '${FQDN}' > /etc/hostname
-	/usr/bin/ln -s /usr/share/zoneinfo/${TIMEZONE} /etc/localtime
 	/usr/bin/hwclock --systohc --utc
 	echo 'KEYMAP=${KEYMAP}' > /etc/vconsole.conf
 	/usr/bin/sed -i 's/#${LANGUAGE}/${LANGUAGE}/' /etc/locale.gen
