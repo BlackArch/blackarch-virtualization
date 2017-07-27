@@ -93,7 +93,7 @@ expect <<EOF
 	}
 	set timeout $EXPECT_TIMEOUT
 
-	spawn pacstrap -C $PACMAN_CONF -c -d -G -i $ROOTFS base ca-certificates haveged $PACMAN_EXTRA_PKGS --ignore $PKGIGNORE
+	spawn pacstrap -C $PACMAN_CONF -c -d -G -i $ROOTFS base ca-certificates haveged libtool $PACMAN_EXTRA_PKGS --ignore $PKGIGNORE
 	expect {
 		-exact "anyway? \[Y/n\] " { send -- "n\r"; exp_continue }
 		-exact "(default=all): " { send -- "\r"; exp_continue }
