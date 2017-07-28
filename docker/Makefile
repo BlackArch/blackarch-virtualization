@@ -10,7 +10,7 @@ all: build
 
 clean:
 	-$(DOCKER) rmi -f $(TAG_BUILDER)
-	-rm -r $(BUILD_DIR)
+	-rm -rf $(BUILD_DIR)
 
 deepclean: clean
 	-$(DOCKER) rmi -f $(TAG_IMAGE)
