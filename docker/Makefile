@@ -1,4 +1,4 @@
-BUILD_DIR ?= $(PWD)/output
+BUILD_DIR ?= $(shell pwd)/output
 DOCKER ?= /usr/bin/docker
 DOCKER_CONTROL_SOCKET ?= /var/run/docker.sock
 TAG_BUILDER ?= blackarch-builder
