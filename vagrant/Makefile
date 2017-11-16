@@ -8,9 +8,12 @@ PACKER ?= packer-io
 
 .PHONY: all clean deepclean validate build
 
-all: build
+all: update build
 
 build: $(BUILD_DIR)/$(BOX_FILENAME)
+
+update:
+	scripts/update.sh
 
 clean:
 	rm -rf $(BUILD_DIR)
