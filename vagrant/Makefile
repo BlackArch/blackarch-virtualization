@@ -6,11 +6,14 @@ BOX_FILENAME ?= $(BOX_NAME)_$(PROVIDER).box
 BOX_DEFINITION ?= ./template.json
 PACKER ?= packer-io
 
-.PHONY: all clean deepclean validate build
+.PHONY: all clean deepclean validate build update
 
 all: build
 
 build: $(BUILD_DIR)/$(BOX_FILENAME)
+
+update:
+	scripts/update.sh
 
 clean:
 	rm -rf $(BUILD_DIR)

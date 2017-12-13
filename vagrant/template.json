@@ -76,7 +76,7 @@
   "variables": {
     "cpus": "1",
     "iso_checksum": "4ae0f581e0ca27ba3a06646cad829b438d0b7e37433ee41d24d93dbb255669e2",
-    "iso_checksum_type": "sha256",
+    "iso_checksum_type": "md5",
     "iso_url": "http://mirror.rackspace.com/archlinux/iso/2017.10.01/archlinux-2017.10.01-x86_64.iso",
     "memory": "1024"
   }

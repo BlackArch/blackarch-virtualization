@@ -20,7 +20,9 @@ All actions are implemented as `make` targets.
 * *validate*: validate the template JSON
 * *test*: run rudimentary tests against a built image
 * *build*: build image
+* *update*: update image url and checksum
+
 
 A typical build can be triggered with
 
-    make clean build test
+    make clean update build test
