@@ -74,7 +74,7 @@ IFS=','
 PKGIGNORE="${PKGIGNORE[*]}"
 unset IFS
 
-PACMAN_CONF=$PWD/build-pacman.conf
+PACMAN_CONF=($PWD/build-pacman.conf)
 PACMAN_MIRRORLIST='Server = https://mirrors.kernel.org/archlinux/$repo/os/$arch'
 PACMAN_EXTRA_PKGS=''
 EXPECT_TIMEOUT=360
