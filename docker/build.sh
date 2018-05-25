@@ -33,7 +33,7 @@ msg()
 }
 
 msg 'checking requirements'
-REQUIREMENTS="pacstrap expect"
+REQUIREMENTS="pacstrap expect curl"
 for req in $REQUIREMENTS ; do
 	hash $req &>/dev/null || {
 		echo "Could not find $req."
@@ -43,7 +43,7 @@ done
 
 export LANG="C.UTF-8"
 
-ROOTFS=$(mktemp -d /output/rootfs-blackarch-XXXXXXXXXX)
+ROOTFS=$(mktemp -d $PWD/rootfs-blackarch-XXXXXXXXXXX)
 chmod 755 $ROOTFS
 
 # packages to ignore for space savings
@@ -74,7 +74,7 @@ IFS=','
 PKGIGNORE="${PKGIGNORE[*]}"
 unset IFS
 
-PACMAN_CONF='/usr/local/etc/build-pacman.conf'
+PACMAN_CONF=($PWD/build-pacman.conf)
 PACMAN_MIRRORLIST='Server = https://mirrors.kernel.org/archlinux/$repo/os/$arch'
 PACMAN_EXTRA_PKGS=''
 EXPECT_TIMEOUT=360
@@ -102,16 +102,18 @@ expect <<EOF
 EOF
 
 msg 'injecting and running config helper script'
-cp -v /usr/local/bin/build-helper.sh $ROOTFS/bin/
+cp -vf $PWD/build-helper.sh $ROOTFS/bin/build-helper.sh
 sed -i 's/ARCH_KEYRING/'$ARCH_KEYRING'/g' $ROOTFS/bin/build-helper.sh
 echo $PACMAN_MIRRORLIST > $ROOTFS/etc/pacman.d/mirrorlist
 arch-chroot $ROOTFS /bin/build-helper.sh
 rm -v $ROOTFS/bin/build-helper.sh
 
 msg 'bootstrapping BlackArch keys and repos'
-cp -v /usr/local/bin/strap.sh $ROOTFS/bin/
-arch-chroot $ROOTFS /bin/strap.sh
-rm $ROOTFS/bin/strap.sh
+curl -O https://blackarch.org/strap.sh
+chmod +x $PWD/strap.sh
+mv -v $PWD/strap.sh $ROOTFS/bin/strap.sh
+arch-chroot $ROOTFS pacman-key --populate; pacman-key --update
+arch-chroot $ROOTFS ./bin/strap.sh
 
 msg 'creating device nodes'
 # udev doesn't work in containers, rebuild /dev

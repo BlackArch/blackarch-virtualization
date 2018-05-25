@@ -16,7 +16,7 @@ First, we will build an `blackarch-builder` image including everything we need t
 
 ### Stage 2: The `blackarch` image
 
-When the container based on the `blackarch-builder` starts, the [entrypoint](https://docs.docker.com/engine/reference/builder/#entrypoint) of the image will [pacstrap](https://wiki.archlinux.org/index.php/Install_from_existing_Linux) a minimal Arch Linux installation to a temporary directory under `/output` (mounted as the output directory on the host), perform various configuration steps on that installation (some via a script injected into the chroot, because of some limitations of `arch-bootstrap`), run the BlackArch [`strap.sh`](https://www.blackarch.org/strap.sh) script which in turn will install the BlackArch keys and repositories. Finally, we tar said directory and import that tarball via the Docker control socket into the Docker engine behind the socket.
+When the container based on the `blackarch-builder` starts, the [entrypoint](https://docs.docker.com/engine/reference/builder/#entrypoint) of the image will [pacstrap](https://wiki.archlinux.org/index.php/Install_from_existing_Linux) a minimal Arch Linux installation to a temporary directory (/rootfs-blackarch-XXXXXXXX) under the build directory, perform various configuration steps on that installation (some via a script injected into the chroot, because of some limitations of `arch-bootstrap`), run the BlackArch [`strap.sh`](https://www.blackarch.org/strap.sh) script which in turn will install the BlackArch keys and repositories. Finally, we tar said directory, import that tarball via the Docker control socket into the Docker engine behind the socket, and clean up all temporary files.
 
 ### Testing
 
