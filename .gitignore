@@ -1,4 +1,7 @@
-docker/output
+docker/output/*
+!docker/output/build-helper.sh
+!docker/output/build-pacman.conf
+!docker/output/build.sh
 
 vagrant/vagrant_cache
 vagrant/output*
