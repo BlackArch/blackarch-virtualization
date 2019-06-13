@@ -1,4 +1,4 @@
-FROM base/archlinux
+FROM archlinux/base
 RUN pacman --noconfirm -Sy archlinux-keyring && \
     pacman --noconfirm -S expect sed tar arch-install-scripts && \
     pacman -Scc
