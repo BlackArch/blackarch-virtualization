@@ -48,8 +48,6 @@ chmod 755 $ROOTFS
 
 # packages to ignore for space savings
 PKGIGNORE=(
-    cryptsetup
-    device-mapper
     dhcpcd
     iproute2
     jfsutils
@@ -74,7 +72,7 @@ IFS=','
 PKGIGNORE="${PKGIGNORE[*]}"
 unset IFS
 
-PACMAN_CONF=($PWD/build-pacman.conf)
+PACMAN_CONF=(/usr/local/etc/build-pacman.conf)
 PACMAN_MIRRORLIST='Server = https://mirrors.kernel.org/archlinux/$repo/os/$arch'
 PACMAN_EXTRA_PKGS=''
 EXPECT_TIMEOUT=360
@@ -102,7 +100,7 @@ expect <<EOF
 EOF
 
 msg 'injecting and running config helper script'
-cp -vf $PWD/build-helper.sh $ROOTFS/bin/build-helper.sh
+cp -vf /usr/local/bin/build-helper.sh $ROOTFS/bin/build-helper.sh
 sed -i 's/ARCH_KEYRING/'$ARCH_KEYRING'/g' $ROOTFS/bin/build-helper.sh
 echo $PACMAN_MIRRORLIST > $ROOTFS/etc/pacman.d/mirrorlist
 arch-chroot $ROOTFS /bin/build-helper.sh
@@ -110,8 +108,8 @@ rm -v $ROOTFS/bin/build-helper.sh
 
 msg 'bootstrapping BlackArch keys and repos'
 curl -O https://blackarch.org/strap.sh
-chmod +x $PWD/strap.sh
-mv -v $PWD/strap.sh $ROOTFS/bin/strap.sh
+chmod +x /usr/local/bin/strap.sh
+mv -v /usr/local/bin/strap.sh $ROOTFS/bin/strap.sh
 arch-chroot $ROOTFS pacman-key --populate; pacman-key --update
 arch-chroot $ROOTFS ./bin/strap.sh
 
