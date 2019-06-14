@@ -67,6 +67,27 @@ PKGIGNORE=(
     usbutils
     vi
     xfsprogs
+    which
+    textinfo
+    tar
+    sysfsutils
+    psmisc
+    procps
+    mpfr
+    logrotate
+    linux-firmware
+    licenses
+    libxml2
+    libtool
+    libcroco
+    iputils
+    inetutils
+    icu
+    grep
+    gettext
+    gawk
+    file
+    diffutils
 )
 IFS=','
 PKGIGNORE="${PKGIGNORE[*]}"
