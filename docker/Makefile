@@ -21,8 +21,8 @@ builder:
 	$(DOCKER) build -t $(TAG_BUILDER) .
 
 image:
-	$(DOCKER) run --privileged -v $(DOCKER_CONTROL_SOCKET):$(DOCKER_CONTROL_SOCKET) -v $(BUILD_DIR):/output $(TAG_BUILDER)
+	$(DOCKER) run --rm --privileged -v $(DOCKER_CONTROL_SOCKET):$(DOCKER_CONTROL_SOCKET) -v $(BUILD_DIR):/output $(TAG_BUILDER)
 
 test:
 	$(DOCKER) images | grep -q "^blackarch " || ( echo No blackarch image. && exit 1)
-	$(DOCKER) run -ti blackarch echo Success.
+	$(DOCKER) run --rm -ti blackarch echo Success.
