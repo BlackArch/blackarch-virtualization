@@ -95,7 +95,7 @@ unset IFS
 
 PACMAN_CONF=(/usr/local/etc/build-pacman.conf)
 PACMAN_MIRRORLIST='Server = https://mirrors.kernel.org/archlinux/$repo/os/$arch'
-PACMAN_EXTRA_PKGS='sed pacman procps-ng'
+PACMAN_EXTRA_PKGS='sed pacman procps-ng base-devel'
 EXPECT_TIMEOUT=360
 ARCH_KEYRING=archlinux
 DOCKER_IMAGE_NAME=blackarch
