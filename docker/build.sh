@@ -95,7 +95,7 @@ unset IFS
 
 PACMAN_CONF=(/usr/local/etc/build-pacman.conf)
 PACMAN_MIRRORLIST='Server = https://mirrors.kernel.org/archlinux/$repo/os/$arch'
-PACMAN_EXTRA_PKGS=''
+PACMAN_EXTRA_PKGS='sed pacman procps-ng base-devel'
 EXPECT_TIMEOUT=360
 ARCH_KEYRING=archlinux
 DOCKER_IMAGE_NAME=blackarch
@@ -117,6 +117,7 @@ expect <<EOF
 		-exact "anyway? \[Y/n\] " { send -- "n\r"; exp_continue }
 		-exact "(default=all): " { send -- "\r"; exp_continue }
 		-exact "installation? \[Y/n\]" { send -- "y\r"; exp_continue }
+		-exact "upgrade? \[y/N\]" { send -- "Y\r"; exp_continue }
 	}
 EOF
 
