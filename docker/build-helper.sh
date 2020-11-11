@@ -7,7 +7,7 @@ pkill haveged
 pacman -Rs --noconfirm haveged
 pacman-key --populate ARCH_KEYRING
 pkill gpg-agent
-ln -s /usr/share/zoneinfo/UTC /etc/localtime
+ln -s /usr/share/zoneinfo/TIMEZONE /etc/localtime
 echo 'en_US.UTF-8 UTF-8' > /etc/locale.gen
 locale-gen
 update-ca-trust
