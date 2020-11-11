@@ -129,8 +129,6 @@ arch-chroot $ROOTFS /bin/build-helper.sh
 rm -v $ROOTFS/bin/build-helper.sh
 
 msg 'bootstrapping BlackArch keys and repos'
-curl -O https://blackarch.org/strap.sh
-chmod +x /usr/local/bin/strap.sh
 mv -v /usr/local/bin/strap.sh $ROOTFS/bin/strap.sh
 arch-chroot $ROOTFS pacman-key --populate; pacman-key --update
 arch-chroot $ROOTFS ./bin/strap.sh
